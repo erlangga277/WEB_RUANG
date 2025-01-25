@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eRuang - Sistem Peminjaman Ruangan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+<body>
+    <!-- Navbar -->
+    <header class="bg-gray-300 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">eRuang - Sistem Peminjaman Ruangan</h1>
+        <div class="flex items-center gap-4">
+            <input type="text" placeholder="Search" class="border p-2 rounded-md">
+            <a href="login.html" class="text-blue-600">Login</a>
+        </div>
+    </header>
+    
+    <nav class="bg-gray-200 p-4 flex gap-4">
+        <a href="index.html" class="text-blue-600 hover:underline">Home</a>
+        <a href="ruangan.html" class="text-blue-600 hover:underline">Ruangan</a>
+        <a href="fasilitas.html" class="text-blue-600 hover:underline">Fasilitas</a>
+        <a href="about.html" class="text-blue-600 hover:underline">Tentang Kami</a>
+    </nav>
+
+    <!-- Main -->
+    <main class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Tentang eRuang -->
+        <section class="lg:col-span-2 bg-white p-4 rounded-md shadow">
+            <h2 class="text-lg font-bold mb-4">Tentang eRuang</h2>
+            <p class="mb-4">E-Ruang adalah sebuah platform digital inovatif yang dirancang untuk memudahkan proses peminjaman dan pengelolaan ruangan secara online. Dengan antarmuka yang user-friendly dan fitur yang lengkap, E-Ruang hadir untuk memenuhi kebutuhan individu, organisasi, maupun institusi dalam mengakses dan memesan ruangan dengan cepat dan efisien.</p>
+        </section>
+    
+        <!-- Kategori Ruangan -->
+        <aside class="bg-white p-4 rounded-md shadow">
+            <h2 class="text-lg font-bold mb-4">Kategori Ruangan</h2>
+            <ul class="space-y-2">
+                <li><a href="ALL RUANGAN/aula.html" class="text-blue-600 hover:underline">Aula</a></li>
+                <li><a href="ALL RUANGAN/rapat.html" class="text-blue-600 hover:underline">Ruang Rapat</a></li>
+                <li><a href="ALL RUANGAN/seminar.html" class="text-blue-600 hover:underline">Ruang Seminar</a></li>
+                <li><a href="ALL RUANGAN/labkom.html" class="text-blue-600 hover:underline">Lab Komputer</a></li>
+            </ul>
+        </aside>
+    
+        
+        <!-- Rekomendasi Ruangan -->
+        <section class="lg:col-span-3 bg-white p-4 rounded-md shadow">
+            <h2 class="text-lg font-bold mb-4">Rekomendasi Ruangan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="border p-4 rounded-md h-64 w-85">
+                <img src="img/cover lab.jpeg" class="w-full h-40 bg-gray-200 mb-2 object-cover"></img>
+                <h3 class="font-semibold">Lab Komputer</h3>
+                <p class="text-sm flex items-center gap-1">
+                    <span>&#128101;</span> 8 Orang
+                </p>
+                <p class="text-sm font-bold">Rp. 250K/Jam</p>
+            </div>
+
+            <div class="border p-4 rounded-md h-64 w-85">
+                <img src="img/cover rapat.jpeg" class="w-full h-40 bg-gray-200 mb-2 object-cover"></img>
+                <h3 class="font-semibold">Ruang Rapat</h3>
+                <p class="text-sm flex items-center gap-1">
+                    <span>&#128101;</span> 2 Orang
+                </p>
+                <p class="text-sm font-bold">Rp. 200K/Jam</p>
+            </div>
+
+            <div class="border p-4 rounded-md h-64 w-85">
+                <img src="img/cover aula.jpeg" class="w-full h-40 bg-gray-200 mb-2 object-cover"></img>
+                <h3 class="font-semibold">Aula Cendrawasih</h3>
+                <p class="text-sm flex items-center gap-1">
+                    <span>&#128101;</span> 1 Orang
+                </p>
+                <p class="text-sm font-bold">Rp. 1.000K/Jam</p>
+            </div>
+        </div>
+    </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-300 p-4 text-center text-sm">
+        Develop By Mahasiswa STT-NF @2025
+    </footer>
+</body>
+</html>

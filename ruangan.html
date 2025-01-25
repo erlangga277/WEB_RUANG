@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eRuang - Sistem Peminjaman Ruangan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+<body>
+    <!-- Navbar -->
+    <header class="bg-gray-300 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">eRuang - Sistem Peminjaman Ruangan</h1>
+        <div class="flex items-center gap-4">
+            <input type="text" placeholder="Search" class="border p-2 rounded-md">
+            <a href="login.html" class="text-blue-600">Login</a>
+        </div>
+    </header>
+    
+    <nav class="bg-gray-200 p-4 flex gap-4">
+        <a href="index.html" class="text-blue-600 hover:underline">Home</a>
+        <a href="ruangan.html" class="text-blue-600 hover:underline">Ruangan</a>
+        <a href="fasilitas.html" class="text-blue-600 hover:underline">Fasilitas</a>
+        <a href="about.html" class="text-blue-600 hover:underline">Tentang Kami</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-1 gap-6">
+        <!-- Left Column -->
+        <div class="lg:col-span-3 bg-white p-6 rounded shadow">
+            <h2 class="text-2xl font-bold mb-4">Ruangan</h2>
+
+            <!-- Breadcrumb -->
+            <p class="text-sm text-gray-500 mb-6">
+                <a href="index.html" class="text-blue-500 hover:underline">Home</a> > Ruangan
+            </p>
+
+            <!-- Room 1 -->
+            <div class="flex items-start space-x-4 border-b pb-4 mb-4">
+                <div class="w-24 h-24 bg-gray-300 flex-shrink-0">
+                    <img src="img/cover aula.jpeg" alt="Aula Serbaguna" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold">Aula Serbaguna</h3>
+                    <p class="text-gray-700 text-sm">
+                        Aula Besar untuk kegiatan acara MUNAS, Pentas Seni, Wisuda, Pernikahan, dan kegiatan lainnya di dalam ruangan ber-AC yang nyaman dan berkesan mewah.
+                    </p>
+                    <a href="all ruangan/aula.html" class="text-blue-500 hover:underline text-sm">Lihat Detail</a>
+                </div>
+            </div>
+            
+
+            <!-- Room 2 -->
+            <div class="flex items-start space-x-4 border-b pb-4 mb-4">
+                <div class="w-24 h-24 bg-gray-300 flex-shrink-0">
+                    <img src="img/cover rapat.jpeg" alt="Ruangan Rapat" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold">Ruang Rapat</h3>
+                    <p class="text-gray-700 text-sm">
+                        Nikmati lingkungan kerja yang elegan, termasuk peralatan canggih dan bantuan staf teknis yang akan membantu Anda dengan keadaan khusus apa pun. Kami bahkan akan menjawab panggilan telepon Anda dengan nama bisnis Anda.
+                    </p>
+                    <a href="all ruangan/rapat.html" class="text-blue-500 hover:underline text-sm">Lihat Detail</a>
+                </div>
+            </div>
+
+            <!-- Room 3 -->
+            <div class="flex items-start space-x-4 border-b pb-4 mb-4">
+                <div class="w-24 h-24 bg-gray-300 flex-shrink-0">
+                    <img src="img/cover seminar.jpeg" alt="Ruangan Seminar" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold">Ruang Seminar</h3>
+                    <p class="text-gray-700 text-sm">
+                        Ruang seminar dirancang untuk mendukung kegiatan pelatihan, presentasi, atau workshop. Ruangan dilengkapi dengan proyektor dan sound system modern.
+                    </p>
+                    <a href="all ruangan/seminar.html" class="text-blue-500 hover:underline text-sm">Lihat Detail</a>
+                </div>
+            </div>
+
+            <!-- Room 4 -->
+            <div class="flex items-start space-x-4">
+                <div class="w-24 h-24 bg-gray-300 flex-shrink-0">
+                    <img src="img/cover lab.jpeg" alt="Lab Komputer" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold">Lab Komputer</h3>
+                    <p class="text-gray-700 text-sm">
+                        Lab komputer dilengkapi dengan komputer modern dan koneksi internet cepat untuk mendukung kegiatan pembelajaran, pelatihan teknologi, dan ujian online.
+                    </p>
+                    <a href="all ruangan/labkom.html" class="text-blue-500 hover:underline text-sm">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-300 p-4 text-center text-sm">
+      Develop By Mahasiswa STT-NF @2025
+    </footer>
+</body>
+</html>
