@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        let editIndex = null;
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form data
+            const nama = document.getElementById('namaPeminjam').value;
+            const ruangan = document.getElementById('ruangan').value;
+            const deskripsi = document.getElementById('deskripsi').value;
+            const fasilitas = Array.from(document.querySelectorAll('input[name="fasilitas"]:checked')).map(el => el.value).join(', ');
+            const kapasitas = document.getElementById('kapasitas').value;
+            const tanggal = document.getElementById('tanggalPinjam').value;
+            const kontak = document.getElementById('kontak').value;
+            const email = document.getElementById('email').value;
+
+            const adminTableBody = document.getElementById('adminTableBody');
+
+            if (editIndex !== null) {
+                const row = adminTableBody.rows[editIndex];
+                row.cells[1].textContent = nama;
+                row.cells[2].textContent = ruangan;
+                row.cells[3].textContent = deskripsi;
+                row.cells[4].textContent = fasilitas;
+                row.cells[5].textContent = kapasitas;
+                row.cells[6].textContent = tanggal;
+                row.cells[7].textContent = kontak;
+                row.cells[8].textContent = email;
+                editIndex = null;
+            } else {
+                // Create a new row for the admin table
+                const newRow = document.createElement('tr');
+                newRow.classList.add('bg-gray-100');
+                newRow.innerHTML = `
+                    <td class="border px-2 py-1">${adminTableBody.rows.length + 1}</td>
+                    <td class="border px-2 py-1">${nama}</td>
+                    <td class="border px-2 py-1">${ruangan}</td>
+                    <td class="border px-2 py-1">${deskripsi}</td>
+                    <td class="border px-2 py-1">${fasilitas}</td>
+                    <td class="border px-2 py-1">${kapasitas}</td>
+                    <td class="border px-2 py-1">${tanggal}</td>
+                    <td class="border px-2 py-1">${kontak}</td>
+                    <td class="border px-2 py-1">${email}</td>
+                    <td class="border px-2 py-1">
+                        <a href="#" class="text-blue-600 hover:underline" onclick="editRow(this)">Edit</a>
+                        <a href="#" class="text-red-600 hover:underline" onclick="deleteRow(this)">Delete</a>  
+                        <a href="#" class="text-green-600 hover:underline" onclick="viewDetails(this)">Detail</a>
+                    </td>
+                `;
+                adminTableBody.appendChild(newRow);
+            }
+
+            // Navigate to the admin page
+            document.getElementById('formPage').classList.add('hidden');
+            document.getElementById('adminPage').classList.remove('hidden');
+        }
+
+        function editRow(element) {
+            const row = element.closest('tr');
+            editIndex = row.rowIndex - 1;
+            const cells = row.cells;
+
+            document.getElementById('namaPeminjam').value = cells[1].textContent;
+            document.getElementById('ruangan').value = cells[2].textContent;
+            document.getElementById('deskripsi').value = cells[3].textContent;
+            const fasilitas = cells[4].textContent.split(', ');
+            document.querySelectorAll('input[name="fasilitas"]').forEach(input => {
+                input.checked = fasilitas.includes(input.value);
+            });
+            document.getElementById('kapasitas').value = cells[5].textContent;
+            document.getElementById('tanggalPinjam').value = cells[6].textContent;
+            document.getElementById('kontak').value = cells[7].textContent;
+            document.getElementById('email').value = cells[8].textContent;
+
+            document.getElementById('formPage').classList.remove('hidden');
+            document.getElementById('adminPage').classList.add('hidden');
+        }
+
+        function deleteRow(element) {
+            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                const row = element.closest('tr');
+                row.remove();
+
+                // Update row numbers
+                const adminTableBody = document.getElementById('adminTableBody');
+                Array.from(adminTableBody.rows).forEach((row, index) => {
+                    row.cells[0].textContent = index + 1;
+                });
+            }
+        }
+
+        function viewDetails(element) {
+            const row = element.closest('tr');
+            const cells = row.cells;
+            const details = `
+                Nama: ${cells[1].textContent}\n
+                Ruangan: ${cells[2].textContent}\n
+                Deskripsi: ${cells[3].textContent}\n
+                Fasilitas: ${cells[4].textContent}\n
+                Kapasitas: ${cells[5].textContent}\n
+                Tanggal: ${cells[6].textContent}\n
+                Kontak: ${cells[7].textContent}\n
+                Email: ${cells[8].textContent}
+            `;
+            alert(details);
+        }
+    </script>
+</head>
+<body class="bg-gray-100 p-4">
+    <!-- Form Pemesanan Page -->
+    <div id="formPage" class="container mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <nav class="flex justify-between items-center mb-6">
+            <div class="flex space-x-4">
+                <a href="#" class="text-black-600">Form Pemesanan Ruang</a>
+            </div>
+        </nav>
+        <div class="border p-6 rounded-lg">
+            <h2 class="text-xl font-bold mb-4">Booking Ruangan</h2>
+            <form onsubmit="submitForm(event)">
+                <div class="mb-4">
+                    <label class="block mb-2">Nama Peminjam :</label>
+                    <input type="text" id="namaPeminjam" class="w-full border rounded px-4 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Ruangan :</label>
+                    <select id="ruangan" class="w-full border rounded px-4 py-2">
+                        <option>Aula</option>
+                        <option>Ruang Seminar</option>
+                        <option>Ruang Rapat</option>
+                        <option>Lab Komputer</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Deskripsi Kegiatan :</label>
+                    <textarea id="deskripsi" class="w-full border rounded px-4 py-2 h-24"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Fasilitas Tambahan :</label>
+                    <div class="flex space-x-4">
+                        <label><input type="checkbox" name="fasilitas" value="Sound System" class="mr-2"> Sound System</label>
+                        <label><input type="checkbox" name="fasilitas" value="Wifi" class="mr-2"> Wifi</label>
+                        <label><input type="checkbox" name="fasilitas" value="Layar Besar" class="mr-2"> Layar Besar</label>
+                        <label><input type="checkbox" name="fasilitas" value="Katering" class="mr-2"> Katering</label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Kapasitas :</label>
+                    <input type="text" id="kapasitas" class="border rounded px-4 py-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Tanggal Pinjam :</label>
+                    <input type="date" id="tanggalPinjam" class="border rounded px-4 py-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Kontak Person :</label>
+                    <input type="text" id="kontak" class="w-full border rounded px-4 py-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Email :</label>
+                    <input type="email" id="email" class="w-full border rounded px-4 py-2">
+                </div>
+                <div class="flex space-x-4">
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Submit</button>
+                    <button type="reset" class="bg-gray-300 px-4 py-2 rounded">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Page -->
+    <div id="adminPage" class="hidden container mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <header class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Admin eRuang - Sistem Peminjaman Ruangan</h1>
+        </header>
+        <div class="border p-4">
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr>
+                            <th class="border px-2 py-1">No</th>
+                            <th class="border px-2 py-1">Nama Peminjam</th>
+                            <th class="border px-2 py-1">Lokasi</th>
+                            <th class="border px-2 py-1">Deskripsi</th>
+                            <th class="border px-2 py-1">Fasilitas</th>
+                            <th class="border px-2 py-1">Kapasitas</th>
+                            <th class="border px-2 py-1">Tanggal</th>
+                            <th class="border px-2 py-1">Kontak</th>
+                            <th class="border px-2 py-1">Email</th>
+                            <th class="border px-2 py-1">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody">
+                        <!-- Dynamic rows will be added here -->
+                    </tbody>
+                </table>
+                <div class="mt-4">
+                    <a href="ruangan.html" button type="submit" class="bg-blue-600 text-white rounded">Kembali</button>
+                </div>           
+             </div>
+        </div>
+    </div>
+</body>
+</html>
